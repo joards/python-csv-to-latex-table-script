@@ -2,8 +2,7 @@
 Simple script which takes a csv file and outputs a latex table to stdout
 
 
-## Requirements:
-* Python 2.7.5 (or later)
+Tested with python version 2.7.5
 
 ## Usage:
     $ python csv2latextable.py -i example1.csv
@@ -13,6 +12,7 @@ Add the flag "-h" to get more info about user selectable parameters.
 ```python csv2latextable.py -h
 usage: csv2latextable.py [-h] [-i INPUTFILE] [-d DELIMITER] [-q QUOTECHAR]
                          [-pos TABLEPOS] [-caption CAPTION] [-lable REFLABLE]
+                         [--underline]
 
 Csv to latex table converter.
 
@@ -24,4 +24,5 @@ optional arguments:
   -pos TABLEPOS     Set table position, default=htbp
   -caption CAPTION  Set table caption, default='Generated table'
   -lable REFLABLE   Set table reference lable, default=''
+  --underline       Add underline for each new entry
 ```

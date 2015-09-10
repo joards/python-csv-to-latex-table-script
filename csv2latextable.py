@@ -4,13 +4,14 @@ import csv
 import re
 
 class Csv2LatexTable:
-    def __init__(self, inputFile, delimiter, quotechar, tablepos, cap, reflable):
+    def __init__(self, inputFile, delimiter, quotechar, tablepos, cap, reflable, underLine):
         self.inputFile = inputFile
         self.delimiter = delimiter
         self.quotechar = quotechar
         self.tablePos  = tablepos 
         self.caption   = cap
         self.refLable  = reflable
+        self.underLine = underLine
 
     def readCsv(self):
         with open(self.inputFile, "r") as csvfile:
@@ -25,11 +26,13 @@ class Csv2LatexTable:
             for row in tablereader:
                 #print(len(row))
                 print("  %s \\\\" % re.sub('_', '\\_', ' & '.join(row[:numColumn]) ))
+                if (self.underLine):
+                    print("\\hline")
             
             self.genTableFooter()
 
     def genTableHead(self, numColumn):
-        temp = 'c' + ('|c'*(numColumn-1))
+        temp = 'c' + ('|c'*(numColumn-1)) + '|'
         print("""\\begin{table}[%s]
 \\centering
  \\caption{%s}
@@ -58,8 +61,10 @@ if __name__=="__main__":
                         help="Set table caption, default='Generated table'")   
     parser.add_argument('-lable', dest='refLable', default="", 
                         help="Set table reference lable, default=''")   
+    parser.add_argument('--underline', dest='underLine', action='store_true', 
+                        help="Add underline for each new entry")   
 
     args = parser.parse_args()
 
-    c2lt = Csv2LatexTable(args.inputFile, args.delimiter, args.quotechar, args.tablePos, args.caption, args.refLable)
+    c2lt = Csv2LatexTable(args.inputFile, args.delimiter, args.quotechar, args.tablePos, args.caption, args.refLable, args.underLine)
     c2lt.readCsv()
