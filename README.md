@@ -9,7 +9,8 @@ Tested with python version 2.7.5
 Writes to stdout a latex table based on example1.csv
 Add the flag "-h" to get more info about user selectable parameters.
 
-```python csv2latextable.py -h
+```
+python csv2latextable.py -h
 usage: csv2latextable.py [-h] [-i INPUTFILE] [-d DELIMITER] [-q QUOTECHAR]
                          [-pos TABLEPOS] [-caption CAPTION] [-lable REFLABLE]
                          [--underline]
@@ -26,3 +27,4 @@ optional arguments:
   -lable REFLABLE   Set table reference lable, default=''
   --underline       Add underline for each new entry
 ```
+
